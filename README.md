@@ -6,9 +6,11 @@ A simple to use and integrate captcha plugin for Umbraco Forms which supports bo
 
 This package is supported on Umbraco 9.0.1+ and Umbraco Forms 9.0.1+.
 
-<!-- ### Installation
+### Installation
 
-UmbracoForms.uCaptcha is available from [Our Umbraco](https://our.umbraco.com/packages/website-utilities/umbracoformsucaptcha-v9/), [NuGet](https://www.nuget.org/packages/AaronSadler.uCaptcha-V9) or as a manual download directly from GitHub. -->
+UmbracoForms.uCaptcha is available from [NuGet](https://www.nuget.org/packages/Our.Umbraco.Forms.uCaptcha) or as a manual download directly from GitHub.
+
+    dotnet add package Our.Umbraco.Forms.uCaptcha
 
 ## Usage
 

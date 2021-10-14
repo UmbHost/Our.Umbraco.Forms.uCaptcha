@@ -2,17 +2,24 @@
 
     <PropertyGroup>
         <UmbracoFormsuCaptchaContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\Our.Umbraco.Forms.uCaptcha\**\*.*</UmbracoFormsuCaptchaContentFilesPath>
+	    <UmbracoFormsuCaptchaRazorFilesPath>$(MSBuildThisFileDirectory)..\Views\Partials\Forms\Themes\default\**\*.*</UmbracoFormsuCaptchaRazorFilesPath>
     </PropertyGroup>
 
     <Target Name="CopyUmbracoFormsuCaptchaAssets" BeforeTargets="Build">
         <ItemGroup>
             <UmbracoFormsuCaptchaContentFiles Include="$(UmbracoFormsuCaptchaContentFilesPath)" />
+            <UmbracoFormsuCaptchaRazorFiles Include="$(UmbracoFormsuCaptchaRazorFilesPath)" />
         </ItemGroup>
-        <Message Text="Copying UmbracoForms.uCaptcha files: $(UmbracoFormsuCaptchaContentFilesPath) - #@(UmbracoFormsuCaptchaContentFiles->Count()) files"  Importance="high" />
+        <Message Text="Copying Our.Umbraco.Forms.uCaptcha files: $(UmbracoFormsuCaptchaContentFilesPath) - #@(UmbracoFormsuCaptchaContentFiles->Count()) files"  Importance="high" />
         <Copy
             SourceFiles="@(UmbracoFormsuCaptchaContentFiles)"
             DestinationFiles="@(UmbracoFormsuCaptchaContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Our.Umbraco.Forms.uCaptcha\%(RecursiveDir)%(Filename)%(Extension)')"
             SkipUnchangedFiles="true" />
+        <Message Text="Copying Our.Umbraco.Forms.uCaptcha Razor files: $(UmbracoFormsuCaptchaRazorFilesPath) - #@(UmbracoFormsuCaptchaRazorFiles->Count()) files"  Importance="high" />
+        <Copy
+	        SourceFiles="@(UmbracoFormsuCaptchaRazorFiles)"
+	        DestinationFiles="@(UmbracoFormsuCaptchaRazorFiles->'$(MSBuildProjectDirectory)\Views\Partials\Forms\Themes\default\%(RecursiveDir)%(Filename)%(Extension)')"
+	        SkipUnchangedFiles="true"	/>
 
     </Target>
 

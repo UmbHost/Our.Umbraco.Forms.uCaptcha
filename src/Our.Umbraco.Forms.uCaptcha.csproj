@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <ContentTargetFolders>.</ContentTargetFolders>
+        <Product>UmbracoForms.uCaptcha</Product>
+        <PackageId>Our.Umbraco.Forms.uCaptcha</PackageId>
+        <Title>UmbracoForms.uCaptcha</Title>
+        <Description>A simple to use and integrate captcha plugin for Umbraco Forms which supports both hCaptcha and reCaptcha</Description>
+        <Product>...</Product>
+        <PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha</PackageTags>
+        <RootNamespace>Our.Umbraco.Forms.uCaptcha</RootNamespace>
+        <Company>UmbHost Limited</Company>
+        <Copyright>Copyright 2021</Copyright>
+        <PackageProjectUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</PackageProjectUrl>
+        <PackageIcon>uCaptcha-logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>2.0.0 Initial Release</PackageReleaseNotes>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+        <Authors>UmbHost Limited</Authors>
+        <Version>2.0.0</Version>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.1" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.1" />
+        <PackageReference Include="Umbraco.Forms.Core" Version="9.0.1" />
+        <PackageReference Include="Umbraco.Forms.Web" Version="9.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\Our.Umbraco.Forms.uCaptcha\**\*.*">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        </Content>
+        <None Include="build\**\*.*">
+            <Pack>True</Pack>
+            <PackagePath>buildTransitive</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.hcaptcha.js" />
+      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.invisible.hcaptcha.js" />
+      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.invisible.recaptcha.js" />
+      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.recaptcha.js" />
+      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Backoffice\Common\FieldTypes\ucaptchafield.html" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\Builds\uCaptcha-logo.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+      <None Include="..\README.md">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+</Project>

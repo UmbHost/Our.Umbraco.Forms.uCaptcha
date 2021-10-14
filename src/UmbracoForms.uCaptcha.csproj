@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <ContentTargetFolders>.</ContentTargetFolders>
+        <Product>UmbracoForms.uCaptcha</Product>
+        <PackageId>UmbracoForms.uCaptcha</PackageId>
+        <Title>UmbracoForms.uCaptcha</Title>
+        <Description>...</Description>
+        <Product>...</Product>
+        <PackageTags>umbraco plugin package</PackageTags>
+        <RootNamespace>UmbracoForms.uCaptcha</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.1" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.1" />
+        <PackageReference Include="Umbraco.Forms.Core" Version="9.0.1" />
+        <PackageReference Include="Umbraco.Forms.Web" Version="9.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\UmbracoForms.uCaptcha\**\*.*">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        </Content>
+        <None Include="build\**\*.*">
+            <Pack>True</Pack>
+            <PackagePath>buildTransitive</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="App_Plugins\UmbracoForms.uCaptcha\Assets\umbracoforms.hcaptcha.js" />
+      <None Remove="App_Plugins\UmbracoForms.uCaptcha\Assets\umbracoforms.invisible.hcaptcha.js" />
+      <None Remove="App_Plugins\UmbracoForms.uCaptcha\Assets\umbracoforms.invisible.recaptcha.js" />
+      <None Remove="App_Plugins\UmbracoForms.uCaptcha\Assets\umbracoforms.recaptcha.js" />
+      <None Remove="App_Plugins\UmbracoForms.uCaptcha\Backoffice\Common\FieldTypes\ucaptchafield.html" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="App_Plugins\UmbracoForms.uCaptcha\Images\" />
+    </ItemGroup>
+</Project>

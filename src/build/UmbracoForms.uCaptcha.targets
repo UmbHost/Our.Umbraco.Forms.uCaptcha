@@ -1,0 +1,27 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <UmbracoFormsuCaptchaContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\UmbracoForms.uCaptcha\**\*.*</UmbracoFormsuCaptchaContentFilesPath>
+    </PropertyGroup>
+
+    <Target Name="CopyUmbracoFormsuCaptchaAssets" BeforeTargets="Build">
+        <ItemGroup>
+            <UmbracoFormsuCaptchaContentFiles Include="$(UmbracoFormsuCaptchaContentFilesPath)" />
+        </ItemGroup>
+        <Message Text="Copying UmbracoForms.uCaptcha files: $(UmbracoFormsuCaptchaContentFilesPath) - #@(UmbracoFormsuCaptchaContentFiles->Count()) files"  Importance="high" />
+        <Copy
+            SourceFiles="@(UmbracoFormsuCaptchaContentFiles)"
+            DestinationFiles="@(UmbracoFormsuCaptchaContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\UmbracoForms.uCaptcha\%(RecursiveDir)%(Filename)%(Extension)')"
+            SkipUnchangedFiles="true" />
+
+    </Target>
+
+    <Target Name="ClearUmbracoFormsuCaptchaAssets" BeforeTargets="Clean">
+        <ItemGroup>
+            <UmbracoFormsuCaptchaDir Include="$(MSBuildProjectDirectory)\App_Plugins\UmbracoForms.uCaptcha\" />
+        </ItemGroup>
+        <Message Text="Clear old UmbracoForms.uCaptcha data"  Importance="high" />
+        <RemoveDir Directories="@(UmbracoFormsuCaptchaDir)"  />
+    </Target>
+
+</Project>

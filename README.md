@@ -1,10 +1,10 @@
-# UmbracoForms.uCaptcha
+# Our.Umbraco.Forms.uCaptcha
 
 A simple to use and integrate captcha plugin for Umbraco Forms which supports both hCaptcha and reCaptcha.
 
 ## Getting started
 
-This package is supported on Umbraco 8.6+ and Umbraco Forms 9.0.1+.
+This package is supported on Umbraco 9.0.1+ and Umbraco Forms 9.0.1+.
 
 <!-- ### Installation
 

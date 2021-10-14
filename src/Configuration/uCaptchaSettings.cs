@@ -1,4 +1,4 @@
-﻿namespace UmbracoForms.uCaptcha.Configuration
+﻿namespace Our.Umbraco.Forms.uCaptcha.Configuration
 {
     public class uCaptchaSettings
     {

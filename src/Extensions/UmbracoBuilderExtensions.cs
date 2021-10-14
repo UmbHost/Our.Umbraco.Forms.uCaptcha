@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Our.Umbraco.Forms.uCaptcha.Configuration;
+using Our.Umbraco.Forms.uCaptcha.UmbracoForms;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Forms.Core.Providers;
-using UmbracoForms.uCaptcha.Configuration;
-using UmbracoForms.uCaptcha.UmbracoForms;
 
-namespace UmbracoForms.uCaptcha.Extensions
+namespace Our.Umbraco.Forms.uCaptcha.Extensions
 {
     public static class UmbracoBuilderExtensions
     {

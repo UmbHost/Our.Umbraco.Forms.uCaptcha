@@ -8,7 +8,7 @@
         <Description>...</Description>
         <Product>...</Product>
         <PackageTags>umbraco plugin package</PackageTags>
-        <RootNamespace>UmbracoForms.uCaptcha</RootNamespace>
+        <RootNamespace>Our.Umbraco.Forms.uCaptcha</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

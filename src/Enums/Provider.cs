@@ -1,4 +1,4 @@
-﻿namespace UmbracoForms.uCaptcha.Enums
+﻿namespace Our.Umbraco.Forms.uCaptcha.Enums
 {
     public class Provider
     {

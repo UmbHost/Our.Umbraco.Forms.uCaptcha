@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace UmbracoForms.uCaptcha.UmbracoForms.Models
+namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms.Models
 {
     /// <summary>
     /// Response Model to get the verification result

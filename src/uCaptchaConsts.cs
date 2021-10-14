@@ -1,4 +1,4 @@
-﻿namespace UmbracoForms.uCaptcha
+﻿namespace Our.Umbraco.Forms.uCaptcha
 {
     internal static class uCaptchaConsts
     {

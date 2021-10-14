@@ -1,4 +1,4 @@
-﻿namespace UmbracoForms.uCaptcha.Helpers
+﻿namespace Our.Umbraco.Forms.uCaptcha.Helpers
 {
     internal static class Parse
     {

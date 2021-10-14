@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>UmbHost.Our.Umbraco.Forms.uCaptcha</id>
+    <version>2.0.0</version>
+    <title>Our.Umbraco.Forms.uCaptcha</title>
+    <authors>UmbHost Limited</authors>
+    <owners>UmbHost Limited</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</projectUrl>
+    <icon>uCaptcha-logo.png</icon>
+    <summary>A simple to use and integrate captcha plugin for Umbraco Forms which supports both hCaptcha and reCaptcha</summary>
+    <description>A simple to use and integrate captcha plugin for Umbraco Forms which supports both hCaptcha and reCaptcha</description>
+    <releaseNotes><![CDATA[2.0.0 Initial Release]]></releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha</tags>
+	<dependencies>
+	  <group targetFramework="net5.0">
+		  <dependency id="Umbraco.Forms" version="9.0.1" />
+		  <dependency id="Umbraco.Cms" version="9.0.1" />
+	  </group>
+    </dependencies>
+  </metadata>
+      <files>
+      <file src="..\..\UmbracoForms.uCaptcha\src\bin\Release\net5.0\UmbracoForms.uCaptcha.dll" target="lib\net472" />
+      <file src="..\..\UmbracoForms.uCaptcha\src\Views\Partials\Forms\Fieldtypes\Fieldtype.uCaptcha.cshtml" target="content\Views\Partials\Forms\Fieldtypes\" />
+      <file src="..\..\UmbracoForms.uCaptcha\src\Views\Partials\Forms\Themes\default\Fieldtypes\Fieldtype.uCaptcha.cshtml" target="content\Views\Partials\Forms\Themes\default\Fieldtypes\" />
+      <file src="..\..\UmbracoForms.uCaptcha\src\App_Plugins\UmbracoForms.uCaptcha\" target="content\App_Plugins\UmbracoForms.uCaptcha\" />
+      <file src="..\uCaptcha-logo.png"/>
+    </files>
+</package>

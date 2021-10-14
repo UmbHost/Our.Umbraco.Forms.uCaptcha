@@ -40,7 +40,7 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
 
         public override string GetDesignView()
         {
-            return "~/App_Plugins/UmbracoForms.uCaptcha/Backoffice/Common/FieldTypes/uCaptchafield.html";
+            return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Backoffice/Common/FieldTypes/uCaptchafield.html";
         }
 
         [Setting("Show Label", Description = "Show the property label", View = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/checkbox.html")]
@@ -76,22 +76,22 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
             {
                 if (_config.Provider == Provider.Name.hCaptcha.ToString())
                 {
-                    javascriptFiles.Add($"~/App_Plugins/UmbracoForms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
                 }
                 else if (_config.Provider == Provider.Name.reCaptcha.ToString())
                 {
-                    javascriptFiles.Add($"~/App_Plugins/UmbracoForms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
                 }
             }
             else
             {
                 if (_config.Provider == Provider.Name.hCaptcha.ToString())
                 {
-                    javascriptFiles.Add($"~/App_Plugins/UmbracoForms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalJsResource}");
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalJsResource}");
                 }
                 else if (_config.Provider == Provider.Name.reCaptcha.ToString())
                 {
-                    javascriptFiles.Add($"~/App_Plugins/UmbracoForms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
                 }
             }
 

@@ -14,7 +14,7 @@ UmbracoForms.uCaptcha is available from [NuGet](https://www.nuget.org/packages/O
 
 ## Usage
 
-This package adds both hCaptcha or reCaptcha to Umbraco Forms, configurable by the AppSettings in the Web.Config.
+This package adds both hCaptcha or reCaptcha to Umbraco Forms, configurable in the appsettings.json.
 
 It has the ability to choose from the traditional checkbox or invisible options.
 

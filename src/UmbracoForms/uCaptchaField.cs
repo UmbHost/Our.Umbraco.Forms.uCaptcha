@@ -40,22 +40,22 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
 
         public override string GetDesignView()
         {
-            return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Backoffice/Common/FieldTypes/ucaptchafield.html";
+            return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/backoffice/Common/FieldTypes/ucaptchafield.html";
         }
 
-        [Setting("Show Label", Description = "Show the property label", View = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/checkbox.html")]
+        [Setting("Show Label", Description = "Show the property label", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/checkbox.html")]
         public string ShowLabel { get; set; }
 
-        [Setting("Theme", Description = "uCaptcha theme", PreValues = "dark,light", View = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/dropdownlist.html")]
+        [Setting("Theme", Description = "uCaptcha theme", PreValues = "dark,light", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
         public string Theme { get; set; }
 
-        [Setting("Size", Description = "uCaptcha size", PreValues = "normal,compact,invisible", View = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/dropdownlist.html")]
+        [Setting("Size", Description = "uCaptcha size", PreValues = "normal,compact,invisible", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
         public string Size { get; set; }
 
-        [Setting("reCaptcha Badge Position", Description = "Reposition the reCAPTCHA badge", PreValues = "bottomright,bottomleft,inline", View = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/dropdownlist.html")]
+        [Setting("reCaptcha Badge Position", Description = "Reposition the reCAPTCHA badge", PreValues = "bottomright,bottomleft,inline", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
         public string reCaptchaBadgePosition { get; set; }
 
-        [Setting("Error Message", Description = "The error message to display when the user does not pass the uCaptcha check, the default message is: \"You must check the \"I am human\" checkbox to continue\"", View = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/textfield.html")]
+        [Setting("Error Message", Description = "The error message to display when the user does not pass the uCaptcha check, the default message is: \"You must check the \"I am human\" checkbox to continue\"", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/textfield.html")]
         public string ErrorMessage { get; set; }
 
         public override bool HideLabel => !Parse.Bool(ShowLabel);

@@ -10,7 +10,7 @@
         <PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha</PackageTags>
         <RootNamespace>Our.Umbraco.Forms.uCaptcha</RootNamespace>
         <Company>UmbHost Limited</Company>
-        <Copyright>Copyright 2021</Copyright>
+        <Copyright>Copyright 2022</Copyright>
         <PackageProjectUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</PackageProjectUrl>
         <PackageIcon>uCaptcha-logo.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -20,7 +20,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Authors>UmbHost Limited</Authors>
-        <Version>2.0.4</Version>
+        <Version>2.0.5</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>

@@ -40,7 +40,7 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
 
         public override string GetDesignView()
         {
-            return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/backoffice/Common/FieldTypes/ucaptchafield.html";
+            return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Backoffice/Common/FieldTypes/ucaptchafield.html";
         }
 
         [Setting("Show Label", Description = "Show the property label", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/checkbox.html")]

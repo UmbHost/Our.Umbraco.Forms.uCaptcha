@@ -20,7 +20,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Authors>UmbHost Limited</Authors>
-        <Version>2.0.5</Version>
+        <Version>2.0.7</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>

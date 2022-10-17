@@ -5,11 +5,15 @@
 @inject IOptions<uCaptchaSettings> _config;
 @{
     var providerClass = string.Empty;
-    if (_config.Value.Provider == Provider.Name.hCaptcha.ToString())
+    if (_config.Value.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
     {
         providerClass = "h-captcha";
     }
-    else if (_config.Value.Provider == Provider.Name.reCaptcha.ToString())
+    else if (_config.Value.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+    {
+        providerClass = "g-recaptcha";
+    }
+    else if (_config.Value.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
     {
         providerClass = "g-recaptcha";
     }
@@ -28,7 +32,7 @@
 
     var reCaptchaBadgePosition = string.Empty;
     var reCaptchaBadgeSetting = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "reCaptchaBadgePosition");
-    if (_config.Value.Provider == Provider.Name.reCaptcha.ToString())
+    if (_config.Value.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
     {
         if (reCaptchaBadgeSetting.Value != "")
         {

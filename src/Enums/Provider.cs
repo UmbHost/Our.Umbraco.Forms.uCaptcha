@@ -5,7 +5,8 @@
         public enum Name
         {
             hCaptcha,
-            reCaptcha
+            reCaptcha,
+            Turnstile
         }
     }
 }

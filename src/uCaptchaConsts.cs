@@ -20,6 +20,15 @@
             public static string VerifyPostParameter => "g-recaptcha-response";
         }
 
+        public static class Turnstile
+        {
+            public static string JsResource => "https://challenges.cloudflare.com/turnstile/v0/api.js?compat=recaptcha";
+            public static string LocalJsResource => "umbracoforms.turnstile.js";
+            public static string LocalInvisibleJsResource => "umbracoforms.invisible.turnstile.js";
+            public static string VerifyUrl => "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+            public static string VerifyPostParameter => "g-recaptcha-response";
+        }
+
         public static string uCaptcha => "uCaptcha";
     }
 }

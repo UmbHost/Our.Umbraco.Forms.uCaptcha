@@ -71,6 +71,10 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
             {
                 javascriptFiles.Add(uCaptchaConsts.reCaptcha.JsResource);
             }
+            else if (_config.Provider == Provider.Name.Turnstile.ToString())
+            {
+                javascriptFiles.Add(uCaptchaConsts.Turnstile.JsResource);
+            }
 
             if (field.Settings.ContainsKey("Size") && field.Settings["Size"] == "invisible")
             {
@@ -82,6 +86,10 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
                 {
                     javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
                 }
+                else if (_config.Provider == Provider.Name.Turnstile.ToString())
+                {
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalInvisibleJsResource}");
+                }
             }
             else
             {
@@ -92,6 +100,10 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
                 else if (_config.Provider == Provider.Name.reCaptcha.ToString())
                 {
                     javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
+                }
+                else if (_config.Provider == Provider.Name.Turnstile.ToString())
+                {
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalJsResource}");
                 }
             }
 
@@ -120,6 +132,11 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
             {
                 verifyUrl = uCaptchaConsts.reCaptcha.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.reCaptcha.VerifyPostParameter;
+            }
+            else if (_config.Provider == Provider.Name.Turnstile.ToString())
+            {
+                verifyUrl = uCaptchaConsts.Turnstile.VerifyUrl;
+                verifyPostParameter = uCaptchaConsts.Turnstile.VerifyPostParameter;
             }
 
             if (verifyUrl == null)

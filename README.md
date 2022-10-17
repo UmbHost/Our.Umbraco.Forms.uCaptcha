@@ -14,7 +14,7 @@ UmbracoForms.uCaptcha is available from [NuGet](https://www.nuget.org/packages/O
 
 ## Usage
 
-This package adds both hCaptcha or reCaptcha to Umbraco Forms, configurable in the appsettings.json.
+This package adds hCaptcha, reCaptcha or Turnstile to Umbraco Forms, configurable in the appsettings.json.
 
 It has the ability to choose from the traditional checkbox or invisible options.
 
@@ -26,6 +26,8 @@ Before you begin you will need to get your API keys from your preferred provider
 [hCaptcha](https://hCaptcha.com/?r=0d16470cad8d)
 
 [reCaptcha](https://www.google.com/recaptcha/about/)
+
+[Turnstile](https://developers.cloudflare.com/turnstile/)
 
 You will need to add the following settings to your `appsettings.json`
 
@@ -39,7 +41,7 @@ To select the provider you will need to change the following setting to your `ap
     
     "Provider": "YOUR CHOSEN PROVIDER"
 
-The choices are either `hCaptcha` or `reCaptcha`
+The choices are either `hCaptcha` or `reCaptcha` or `Turnstile`
 
 ### Contribution guidelines
 

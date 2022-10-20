@@ -25,6 +25,7 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
     {
         private readonly uCaptchaSettings _config;
         private readonly ILogger<uCaptchaField> _logger;
+
         public uCaptchaField(IOptionsMonitor<uCaptchaSettings> config, ILogger<uCaptchaField> logger)
         {
             _config = config.CurrentValue;
@@ -43,19 +44,27 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
             return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Backoffice/Common/FieldTypes/ucaptchafield.html";
         }
 
-        [Setting("Show Label", Description = "Show the property label", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/checkbox.html")]
+        [Setting("Show Label", Description = "Show the property label",
+            View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/checkbox.html")]
         public string ShowLabel { get; set; }
 
-        [Setting("Theme", Description = "uCaptcha theme", PreValues = "dark,light", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
+        [Setting("Theme", Description = "uCaptcha theme", PreValues = "dark,light",
+            View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
         public string Theme { get; set; }
 
-        [Setting("Size", Description = "uCaptcha size", PreValues = "normal,compact,invisible", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
+        [Setting("Size", Description = "uCaptcha size", PreValues = "normal,compact,invisible",
+            View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
         public string Size { get; set; }
 
-        [Setting("reCaptcha Badge Position", Description = "Reposition the reCAPTCHA badge", PreValues = "bottomright,bottomleft,inline", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
+        [Setting("reCaptcha Badge Position", Description = "Reposition the reCAPTCHA badge",
+            PreValues = "bottomright,bottomleft,inline",
+            View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
         public string reCaptchaBadgePosition { get; set; }
 
-        [Setting("Error Message", Description = "The error message to display when the user does not pass the uCaptcha check, the default message is: \"You must check the \"I am human\" checkbox to continue\"", View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/textfield.html")]
+        [Setting("Error Message",
+            Description =
+                "The error message to display when the user does not pass the uCaptcha check, the default message is: \"You must check the \"I am human\" checkbox to continue\"",
+            View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/textfield.html")]
         public string ErrorMessage { get; set; }
 
         public override bool HideLabel => !Parse.Bool(ShowLabel);
@@ -67,60 +76,80 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
             {
                 javascriptFiles.Add(uCaptchaConsts.hCaptcha.JsResource);
             }
-            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
+                         StringComparison.InvariantCultureIgnoreCase))
             {
                 javascriptFiles.Add(uCaptchaConsts.reCaptcha.JsResource);
             }
-            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
+                         StringComparison.InvariantCultureIgnoreCase))
             {
                 javascriptFiles.Add(uCaptchaConsts.Turnstile.JsResource);
             }
 
             if (field.Settings.ContainsKey("Size") && field.Settings["Size"] == "invisible")
             {
-                if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(),
+                        StringComparison.InvariantCultureIgnoreCase))
                 {
-                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
                 }
-                else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
+                             StringComparison.InvariantCultureIgnoreCase))
                 {
-                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
                 }
-                else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
+                             StringComparison.InvariantCultureIgnoreCase))
                 {
-                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalInvisibleJsResource}");
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalInvisibleJsResource}");
                 }
             }
             else
             {
-                if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(),
+                        StringComparison.InvariantCultureIgnoreCase))
                 {
-                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalJsResource}");
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalJsResource}");
                 }
-                else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
+                             StringComparison.InvariantCultureIgnoreCase))
                 {
-                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
                 }
-                else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
+                             StringComparison.InvariantCultureIgnoreCase))
                 {
-                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalJsResource}");
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalJsResource}");
                 }
             }
 
             return javascriptFiles;
         }
 
-        public override IEnumerable<string> ValidateField(Form form, Field field, IEnumerable<object> postedValues, HttpContext context, IPlaceholderParsingService placeholderParsingService)
+        public override IEnumerable<string> ValidateField(Form form, Field field, IEnumerable<object> postedValues,
+            HttpContext context,
+            IPlaceholderParsingService placeholderParsingService, IFieldTypeStorage fieldTypeStorage,
+            List<string> errors)
         {
             if (string.IsNullOrWhiteSpace(_config.SecretKey))
             {
-                string message = "ERROR: uCaptcha is missing the Secret Key.  Please update the configuration to include a value at: " + uCaptchaConsts.uCaptcha + ":SecretKey'";
+                string message =
+                    "ERROR: uCaptcha is missing the Secret Key.  Please update the configuration to include a value at: " +
+                    uCaptchaConsts.uCaptcha + ":SecretKey'";
                 this._logger.LogWarning(message);
                 return (IEnumerable<string>)new string[1]
                 {
                     message
                 };
             }
+
             string verifyUrl = null;
             string verifyPostParameter = null;
             if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
@@ -128,12 +157,14 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
                 verifyUrl = uCaptchaConsts.hCaptcha.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.hCaptcha.VerifyPostParameter;
             }
-            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
+                         StringComparison.InvariantCultureIgnoreCase))
             {
                 verifyUrl = uCaptchaConsts.reCaptcha.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.reCaptcha.VerifyPostParameter;
             }
-            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
+                         StringComparison.InvariantCultureIgnoreCase))
             {
                 verifyUrl = uCaptchaConsts.Turnstile.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.Turnstile.VerifyPostParameter;
@@ -153,19 +184,20 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
             {
                 errorMessage = "You must check the \"I am human\" checkbox to continue";
             }
-            var returnStrings = new List<string>();
 
             var secretKey = _config.SecretKey;
 
             using var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
             client.DefaultRequestHeaders.Add("Accept", "*/*");
 
             var parameters = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("response", context.Request.Form[verifyPostParameter]),
                 new KeyValuePair<string, string>("secret", secretKey),
-                new KeyValuePair<string, string>("remoteip", context.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress?.ToString())
+                new KeyValuePair<string, string>("remoteip",
+                    context.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress?.ToString())
             };
 
             var request = new HttpRequestMessage(HttpMethod.Post, verifyUrl)
@@ -181,19 +213,19 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms
                 jsonString.Wait();
 
                 var result = JsonConvert.DeserializeObject<uCaptchaVerifyResponse>(jsonString.Result);
-
-                if ( result is { Success: false })
+                if (result is { Success: false })
                 {
-                    returnStrings.Add(errorMessage);
+                    errors.Add(errorMessage);
                 }
             }
 
             if (!response.IsSuccessStatusCode)
             {
-                returnStrings.Add(errorMessage);
+                errors.Add(errorMessage);
             }
 
-            return returnStrings;
+            return base.ValidateField(form, field, postedValues, context, placeholderParsingService, fieldTypeStorage,
+                errors);
         }
     }
 }

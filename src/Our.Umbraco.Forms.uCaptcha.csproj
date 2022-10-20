@@ -16,11 +16,11 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>3.0.1 Added Turnstile support</PackageReleaseNotes>
+        <PackageReleaseNotes>3.1.0 Updated Umbraco Forms dependencies and fixed Validation</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Authors>UmbHost Limited</Authors>
-        <Version>3.0.1</Version>
+        <Version>3.1.0</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,8 +32,8 @@
     <ItemGroup>
         <PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
         <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.0.0" />
-        <PackageReference Include="Umbraco.Forms.Core" Version="10.0.0" />
-        <PackageReference Include="Umbraco.Forms.Web" Version="10.0.0" />
+        <PackageReference Include="Umbraco.Forms.Core" Version="10.1.3" />
+        <PackageReference Include="Umbraco.Forms.Web" Version="10.1.3" />
     </ItemGroup>
 
     <ItemGroup>

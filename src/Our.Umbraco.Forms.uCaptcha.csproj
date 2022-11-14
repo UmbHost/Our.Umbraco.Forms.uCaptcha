@@ -7,7 +7,7 @@
         <Title>UmbracoForms.uCaptcha</Title>
         <Description>A simple to use and integrate captcha plugin for Umbraco Forms which supports both hCaptcha and reCaptcha</Description>
         <Product>...</Product>
-        <PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha</PackageTags>
+        <PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha, umbraco-marketplace</PackageTags>
         <RootNamespace>Our.Umbraco.Forms.uCaptcha</RootNamespace>
         <Company>UmbHost Limited</Company>
         <Copyright>Copyright 2022</Copyright>
@@ -16,11 +16,11 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>3.1.0 Updated Umbraco Forms dependencies and fixed Validation</PackageReleaseNotes>
+        <PackageReleaseNotes>Added umbraco-marketplace tag</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Authors>UmbHost Limited</Authors>
-        <Version>3.1.0</Version>
+        <Version>3.1.1</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>

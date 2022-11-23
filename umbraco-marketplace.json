@@ -1,0 +1,22 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+
+    "AuthorDetails": {
+        "Description": "UmbHost is a provider of Umbraco hosting and development",
+        "Url": "https://umbhost.net",
+        "ImageUrl": "https://umbhost.net/media/3fvalp2g/umbhost-new-logo-eco-colour.svg"
+    },
+    "Category": "Editor Tools",    
+    "IssueTrackerUrl": "https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha/issues",
+    "LicenseTypes": ["Free"],
+    "PackageType": "Package",
+    "Tags": [
+        "uCaptcha",
+        "ReCaptcha",
+        "hCaptcha",
+        "Turnstile",
+        "Captcha",
+        "Forms",
+        "Umbraco Forms"
+    ]
+}

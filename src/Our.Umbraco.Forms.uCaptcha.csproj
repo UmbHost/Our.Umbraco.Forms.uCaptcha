@@ -16,11 +16,11 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>Added umbraco-marketplace tag</PackageReleaseNotes>
+        <PackageReleaseNotes>Refactored captcha validation</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Authors>UmbHost Limited</Authors>
-        <Version>3.1.1</Version>
+        <Version>3.1.2</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,10 +30,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
-        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.0.0" />
-        <PackageReference Include="Umbraco.Forms.Core" Version="10.1.3" />
-        <PackageReference Include="Umbraco.Forms.Web" Version="10.1.3" />
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="10.3.2" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.3.2" />
+        <PackageReference Include="Umbraco.Forms.Core" Version="10.2.0" />
+        <PackageReference Include="Umbraco.Forms.Web" Version="10.2.0" />
     </ItemGroup>
 
     <ItemGroup>

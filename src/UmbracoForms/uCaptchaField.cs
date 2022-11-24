@@ -153,6 +153,11 @@ public sealed class uCaptchaField : FieldType
 
         errors.AddRange(ValidateFieldWithCaptcha(field, context, errors));
 
+        if (!errors.Any())
+        {
+            return base.ValidateField(form, field, postedValues, context, placeholderParsingService, fieldTypeStorage, errors);
+        }
+
         return errors;
     }
 

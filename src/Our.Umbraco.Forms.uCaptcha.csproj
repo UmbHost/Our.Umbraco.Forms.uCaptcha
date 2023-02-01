@@ -1,26 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ContentTargetFolders>.</ContentTargetFolders>
         <Product>UmbracoForms.uCaptcha</Product>
         <PackageId>Our.Umbraco.Forms.uCaptcha</PackageId>
         <Title>UmbracoForms.uCaptcha</Title>
-        <Description>A simple to use and integrate captcha plugin for Umbraco Forms which supports both hCaptcha and reCaptcha</Description>
+        <Description>A simple to use and integrate captcha plugin for Umbraco Forms which supports hCaptcha, reCaptcha and Cloudflare Turnstile</Description>
         <Product>...</Product>
-        <PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha, umbraco-marketplace</PackageTags>
+        <PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha, turnstile, cloudflare-turnstile, umbraco-marketplace</PackageTags>
         <RootNamespace>Our.Umbraco.Forms.uCaptcha</RootNamespace>
         <Company>UmbHost Limited</Company>
-        <Copyright>Copyright 2022</Copyright>
+        <Copyright>Copyright 2023</Copyright>
         <PackageProjectUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</PackageProjectUrl>
         <PackageIcon>uCaptcha-logo.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>Refactored captcha validation</PackageReleaseNotes>
+        <PackageReleaseNotes>Reworked Cloudflare Turnstile and replaced jQuery with Vanilla JavaScript</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <Authors>UmbHost Limited</Authors>
-        <Version>3.1.2</Version>
+        <Version>4.0.0-preview</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>

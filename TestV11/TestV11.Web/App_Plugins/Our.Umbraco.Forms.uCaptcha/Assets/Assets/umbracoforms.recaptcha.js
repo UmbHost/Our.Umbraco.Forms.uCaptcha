@@ -1,4 +1,4 @@
-﻿// hCaptcha callback
+// reCaptcha callback
 function onSubmit(token) {
     // Find form which triggered hCaptcha
     var uf = document.querySelectorAll("form");

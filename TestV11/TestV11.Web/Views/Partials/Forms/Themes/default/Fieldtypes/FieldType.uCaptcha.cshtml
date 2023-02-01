@@ -1,0 +1,69 @@
+﻿@using Microsoft.Extensions.Options
+@using Our.Umbraco.Forms.uCaptcha.Configuration
+@using Our.Umbraco.Forms.uCaptcha.Enums
+@model Umbraco.Forms.Web.Models.FieldViewModel
+@inject IOptions<uCaptchaSettings> Config;
+@{
+    var ishCaptcha = Config.Value.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase);
+    var isreCaptcha = Config.Value.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase);
+    var isTurnstile = Config.Value.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase);
+}
+@{
+    var providerClass = string.Empty;
+    if (ishCaptcha)
+    {
+        providerClass = "h-captcha";
+    }
+    else if (isreCaptcha)
+    {
+        providerClass = "g-recaptcha";
+    }
+    else if (isTurnstile)
+    {
+        providerClass = "cf-turnstile";
+    }
+    var theme = "light";
+    var (_, t) = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "Theme");
+    if (t != "")
+    {
+        theme = t;
+    }
+    var size = "normal";
+    var (_, s) = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "Size");
+    if (s != "")
+    {
+        size = s;
+    }
+
+    var reCaptchaBadgePosition = string.Empty;
+    var reCaptchaBadgeSetting = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "reCaptchaBadgePosition");
+    if (isreCaptcha)
+    {
+        if (reCaptchaBadgeSetting.Value != "")
+        {
+            reCaptchaBadgePosition = reCaptchaBadgeSetting.Value;
+        }
+        else
+        {
+            reCaptchaBadgePosition = "bottomright";
+        }
+
+    }
+
+    if (!string.IsNullOrEmpty(Config.Value.SiteKey))
+    {
+        <div id="uCaptcha" class="@providerClass" data-sitekey="@Config.Value.SiteKey" data-theme="@theme"
+         @if(!isTurnstile){
+        <text>data-size="@size"</text>
+             }
+                 @if (isreCaptcha)
+             {
+                     <text>data-badge="@reCaptchaBadgePosition"</text>
+             } data-callback="onSubmit"></div>
+        <input type="hidden" name="@Model.Name" value="false" class="u-captcha-bool" />
+    }
+    else
+    {
+        <p class="error">ERROR: uCaptcha is missing the Site Key - Please update the appsettings.json</p>
+    }
+}

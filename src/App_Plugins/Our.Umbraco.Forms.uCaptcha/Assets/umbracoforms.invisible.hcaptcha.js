@@ -1,40 +1,59 @@
-﻿var submittedFormId = null;
-
-//hCaptcha callback
+﻿// hCaptcha callback
 function onSubmit(token) {
-    //Get form container with the id set earlier
-    var frm = $("#" + submittedFormId);
-    var form = frm.find('form').first();
-    //Check we have the correct form by comparing response token
-    if (form.length > 0 && form.find(".h-captcha-response").val(token)) {
-        //Set hCaptcha field to true
-        form.find(".u-captcha-bool").val("true");
-        //Submit the form
-        form.submit();
+    // Get form container with the id set earlier
+    var frm = document.getElementById(submittedFormId);
+    if (frm) {
+        // Check we have the correct form by comparing response token
+        if (frm.querySelector("[id^='h-captcha-response']")) {
+            frm.querySelector("[id^='h-captcha-response']").value = token;
+            // Set hCaptcha field to true
+            frm.querySelector(".u-captcha-bool").value = "true";
+            // Submit the form
+            frm.submit();
+        }
     }
 }
 
 function validate() {
-    //trigger hCaptcha
+    // trigger hCaptcha
     hcaptcha.execute();
 }
 
-//Remove umbraco forms click event
-$(".umbraco-forms-form input[type=submit]").not(".cancel").off('click');
-
-//Replace with hCaptcha trigger
-$(".umbraco-forms-form input[type=submit]").not(".cancel").click(function (evt) {
-    evt.preventDefault();
-    var self = $(this);
-    var frm = self.closest("form");
-    //Validate the form as per usual Umbraco forms way
-    frm.validate();
-    if (frm.valid()) {
-        //Set form id for easy form finding on call back
-        submittedFormId = frm.parent(".umbraco-forms-form").attr('id');
-        //Start hCaptcha process
-        validate();
-        //Disable submit button
-        self.attr("disabled", "disabled");
+var submitButtons = document.querySelectorAll(".umbraco-forms-form input[type=submit]:not(.cancel)");
+// Remove umbraco forms click event
+submitButtons.forEach(function (button) {
+    if (!button.classList.contains("cancel")) {
+        button.removeEventListener("click", function () { });
     }
 });
+
+
+var submittedFormId = null;
+for (let i = 0; i < submitButtons.length; i++) {
+    var input = submitButtons[i];
+    input.addEventListener("click", function (evt) {
+        evt.preventDefault();
+        var frm = $(this).closest("form");
+        resetValidationMessages(frm[0]);
+        frm.validate();
+        if (frm.valid()) {
+            // Set form id for easy form finding on call back
+            submittedFormId = frm[0].id;
+            // Start hCaptcha process
+            validate();
+            // Disable submit button
+            this.setAttribute("disabled", "disabled");
+        }
+    }.bind(input));
+}
+
+/**
+ * Resets the validation messages for a form.
+ * @param {Element} formEl the element of the form.
+ */
+function resetValidationMessages(formEl) {
+    var validationErrorMessageElements = formEl.getElementsByClassName('field-validation-error');
+    for (var i = 0; i < validationErrorMessageElements.length; i++) {
+        validationErrorMessageElements[i].className = 'field-validation-valid';
+    }
+}

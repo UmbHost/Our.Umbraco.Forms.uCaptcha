@@ -53,9 +53,12 @@ To select the provider you will need to change the following setting to your `ap
 
 The choices are either `hCaptcha` or `reCaptcha` or `Turnstile`
 
-# Required theme tweak to Render.cshtml
+# Required theme changes
 
-Due to a change in Umbraco Forms you need to ensure the following is added to the file `Partials/Forms/Themes/THEMENAME/Render.cshtml`
+You need to ensure you have included `@Html.RenderUmbracoFormDependencies()` in your site:
+https://docs.umbraco.com/umbraco-forms/developer/prepping-frontend
+
+Altrnatively if you you can load the script dependencies using the method below in your themes `Render.cshtml` around line 60/61
 
 ```        
 @if (Model.CurrentPage.JavascriptCommands.Any())

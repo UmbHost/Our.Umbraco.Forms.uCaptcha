@@ -58,7 +58,7 @@ The choices are either `hCaptcha` or `reCaptcha` or `Turnstile`
 You need to ensure you have included `@Html.RenderUmbracoFormDependencies()` in your site:
 https://docs.umbraco.com/umbraco-forms/developer/prepping-frontend
 
-Altrnatively you can load the packages script dependencies using the method below in your themes `Render.cshtml` around line 60/61
+Alternatively you can load the packages script dependencies using the method below in your themes `Render.cshtml` around line 60/61
 
 ```        
 @if (Model.CurrentPage.JavascriptCommands.Any())

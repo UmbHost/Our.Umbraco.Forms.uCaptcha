@@ -10,7 +10,7 @@ This package has been tested on Umbraco 11 and Umbraco Forms 11, however only LT
 
 ## Breaking Changes:
 
-### V4.0.0-preview 01 February 2023:
+### V4.0.0 15 February 2023:
 
 Cloudflare Turnstile has been reworked to use a signle javascript file removing `umbracoforms.invisible.turnstile.js`
 Cloudflare Turnstile has been reworked to use the `cf-` prefix instead of `g-`

@@ -25,6 +25,9 @@ public sealed class uCaptchaField : FieldType
 {
     private readonly uCaptchaSettings _config;
     private readonly ILogger<uCaptchaField> _logger;
+    private bool ishCaptcha;
+    private bool isreCaptcha;
+    private bool isTurnstile;
 
     public uCaptchaField(IOptionsMonitor<uCaptchaSettings> config, ILogger<uCaptchaField> logger)
     {
@@ -37,6 +40,9 @@ public sealed class uCaptchaField : FieldType
         DataType = FieldDataType.Bit;
         SortOrder = 10;
         SupportsRegex = false;
+        ishCaptcha = _config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase); 
+        isreCaptcha = _config.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase);
+        isTurnstile = _config.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase);
     }
 
     public override string GetDesignView()
@@ -72,61 +78,35 @@ public sealed class uCaptchaField : FieldType
     public override IEnumerable<string> RequiredJavascriptFiles(Field field)
     {
         var javascriptFiles = base.RequiredJavascriptFiles(field).ToList();
-        if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
-        {
-            javascriptFiles.Add(uCaptchaConsts.hCaptcha.JsResource);
-        }
-        else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
-                     StringComparison.InvariantCultureIgnoreCase))
-        {
-            javascriptFiles.Add(uCaptchaConsts.reCaptcha.JsResource);
-        }
-        else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
-                     StringComparison.InvariantCultureIgnoreCase))
+        if (isTurnstile)
         {
             javascriptFiles.Add(uCaptchaConsts.Turnstile.JsResource);
         }
-
-        if (field.Settings.ContainsKey("Size") && field.Settings["Size"] == "invisible")
-        {
-            if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(),
-                    StringComparison.InvariantCultureIgnoreCase))
-            {
-                javascriptFiles.Add(
-                    $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
-            }
-            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
-                         StringComparison.InvariantCultureIgnoreCase))
-            {
-                javascriptFiles.Add(
-                    $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
-            }
-            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
-                         StringComparison.InvariantCultureIgnoreCase))
-            {
-                javascriptFiles.Add(
-                    $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalInvisibleJsResource}");
-            }
-        }
         else
         {
-            if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(),
-                    StringComparison.InvariantCultureIgnoreCase))
+            if (field.Settings.TryGetValue("Size", out var size) && size.Equals("invisible"))
             {
-                javascriptFiles.Add(
-                    $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalJsResource}");
+                if (ishCaptcha)
+                {
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
+                }
+                else if (isreCaptcha)
+                {
+                    javascriptFiles.Add(
+                        $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
+                }
             }
-            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
-                         StringComparison.InvariantCultureIgnoreCase))
+            else
             {
-                javascriptFiles.Add(
-                    $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
-            }
-            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
-                         StringComparison.InvariantCultureIgnoreCase))
-            {
-                javascriptFiles.Add(
-                    $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalJsResource}");
+                if (ishCaptcha)
+                {
+                    javascriptFiles.Add(uCaptchaConsts.hCaptcha.JsResource);
+                }
+                else if (isreCaptcha)
+                {
+                    javascriptFiles.Add(uCaptchaConsts.reCaptcha.JsResource);
+                }
             }
         }
 
@@ -176,19 +156,17 @@ public sealed class uCaptchaField : FieldType
 
             string verifyUrl = null;
             string verifyPostParameter = null;
-            if (_config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            if (ishCaptcha)
             {
                 verifyUrl = uCaptchaConsts.hCaptcha.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.hCaptcha.VerifyPostParameter;
             }
-            else if (_config.Provider.Equals(Provider.Name.reCaptcha.ToString(),
-                         StringComparison.InvariantCultureIgnoreCase))
+            else if (isreCaptcha)
             {
                 verifyUrl = uCaptchaConsts.reCaptcha.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.reCaptcha.VerifyPostParameter;
             }
-            else if (_config.Provider.Equals(Provider.Name.Turnstile.ToString(),
-                         StringComparison.InvariantCultureIgnoreCase))
+            else if (isTurnstile)
             {
                 verifyUrl = uCaptchaConsts.Turnstile.VerifyUrl;
                 verifyPostParameter = uCaptchaConsts.Turnstile.VerifyPostParameter;
@@ -218,9 +196,9 @@ public sealed class uCaptchaField : FieldType
 
             var parameters = new List<KeyValuePair<string, string>>
             {
-                new KeyValuePair<string, string>("response", context.Request.Form[verifyPostParameter]),
-                new KeyValuePair<string, string>("secret", secretKey),
-                new KeyValuePair<string, string>("remoteip",
+                new("response", context.Request.Form[verifyPostParameter]),
+                new("secret", secretKey),
+                new("remoteip",
                     context.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress?.ToString())
             };
 

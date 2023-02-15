@@ -102,12 +102,12 @@ public sealed class uCaptchaField : FieldType
                 if (ishCaptcha)
                 {
                     javascriptFiles.Add(uCaptchaConsts.hCaptcha.JsResource);
-                    javascriptFiles.Add(uCaptchaConsts.hCaptcha.LocalJsResource);
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalJsResource}");
                 }
                 else if (isreCaptcha)
                 {
                     javascriptFiles.Add(uCaptchaConsts.reCaptcha.JsResource);
-                    javascriptFiles.Add(uCaptchaConsts.reCaptcha.LocalJsResource);
+                    javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalJsResource}");
                 }
             }
         }

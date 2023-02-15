@@ -53,6 +53,38 @@ To select the provider you will need to change the following setting to your `ap
 
 The choices are either `hCaptcha` or `reCaptcha` or `Turnstile`
 
+# Required theme tweak to Render.cshtml
+
+Due to a change in Umbraco Forms you need to ensure the following is added to the file `Partials/Forms/Themes/THEMENAME/Render.cshtml`
+
+```        
+@if (Model.CurrentPage.JavascriptCommands.Any())
+{
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        @foreach (var javascriptCommand in Model.CurrentPage.JavascriptCommands)
+        {
+            @Html.Raw(javascriptCommand)
+        }
+    });
+</script>
+}
+```
+
+If you are using the default theme you will need to create a custom theme using the zip found in the documentation here:
+https://docs.umbraco.com/v/10.x-lts/umbraco-forms/developer/themes
+
+You can change the default theme used by Umbraco in your appsettings.json file
+```
+"Forms": {
+    "FormDesign": {
+      "DefaultTheme": "default",
+    }
+}
+```
+Reference:
+https://docs.umbraco.com/v/10.x-lts/umbraco-forms/developer/configuration
+
 ### Turnstile configuration
 
 The invisible option in the Settings Size dropdown does not do anything when using Cloudflare Turnstile, the invisible mode is controlled by the SiteKey.

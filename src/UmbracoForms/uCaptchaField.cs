@@ -81,6 +81,7 @@ public sealed class uCaptchaField : FieldType
         if (isTurnstile)
         {
             javascriptFiles.Add(uCaptchaConsts.Turnstile.JsResource);
+            javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalJsResource}");
         }
         else
         {
@@ -88,11 +89,13 @@ public sealed class uCaptchaField : FieldType
             {
                 if (ishCaptcha)
                 {
+                    javascriptFiles.Add(uCaptchaConsts.hCaptcha.JsResource);
                     javascriptFiles.Add(
                         $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.hCaptcha.LocalInvisibleJsResource}");
                 }
                 else if (isreCaptcha)
                 {
+                    javascriptFiles.Add(uCaptchaConsts.reCaptcha.JsResource);
                     javascriptFiles.Add(
                         $"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.reCaptcha.LocalInvisibleJsResource}");
                 }

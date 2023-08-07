@@ -1,0 +1,26 @@
+<Project>
+    <PropertyGroup>
+		<VersionPrefix>4.0.0</VersionPrefix>
+		<Authors>Aaron Sadler</Authors>
+		<Company>UmbHost Limited</Company>
+
+		<PackageIconUrl></PackageIconUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</PackageProjectUrl>
+		<PackageTags>umbraco, umbraco-cms, hCaptcha, umbraco-forms, reCaptcha, turnstile, cloudflare-turnstile, umbraco-marketplace</PackageTags>
+
+		<RepositoryUrl>https://github.com/UmbHost/Our.Umbraco.Forms.uCaptcha</RepositoryUrl>
+
+		<Copyright>(c) 2023 UmbHost Limited</Copyright>
+
+		<PackageIcon>uCaptcha-logo.png</PackageIcon>
+
+		<PackageReleaseNotes>
+		</PackageReleaseNotes>
+
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+</Project>

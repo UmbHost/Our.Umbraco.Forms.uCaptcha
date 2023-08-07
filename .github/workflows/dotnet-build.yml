@@ -1,0 +1,70 @@
+name: Package up.
+
+on:
+  workflow_dispatch:
+    
+jobs:
+
+  build:
+    runs-on: windows-latest 
+
+    env:
+      CONFIG: 'Release'
+      SOLUTION_FILE: './src/Our.Umbraco.Forms.uCaptcha.sln'
+      OUT_FOLDER: './build.out/'
+
+    steps:
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: "7.0.304"
+    
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'    
+    
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Retrieve cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-ucaptcha
+
+    - name: Determine Version with GitVersion (MSBuild in Proj will do this)
+      id:   gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.15
+      with:
+        useConfigFile: true
+        configFilePath: ./GitVersion.yml
+
+    - name: Display GitVersion SemVer
+      run: |
+       echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
+              
+# ------------------------
+# actual builds / packages 
+# ------------------------
+    - name: Restore uCaptcha
+      run: dotnet restore ./src/Our.Umbraco.Forms.uCaptcha.csproj
+
+    - name: Build uCaptcha
+      run: dotnet pack ./src/Our.Umbraco.Forms.uCaptcha.csproj --no-restore -c ${{env.CONFIG}} --output ${{env.OUT_FOLDER}} /p:version=${{steps.gitversion.outputs.fullSemVer}}
+      
+    # - name: Push to UmbHost GitHub Nuget Repo
+    #   if: ${{ github.event_name != 'pull_request' }}
+    #   run: | 
+    #     dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg --skip-duplicate --source https://nuget.pkg.github.com/umbhost/index.json --api-key ${{ github.token }}
+
+    # - name: Push to UmbHost Nuget Repo
+    #   if: ${{ github.event_name != 'pull_request' }}
+    #   run: | 
+    #     dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}

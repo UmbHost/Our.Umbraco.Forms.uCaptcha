@@ -2,6 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ContentTargetFolders>.</ContentTargetFolders>
+	    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
         <Product>UmbracoForms.uCaptcha</Product>
         <PackageId>Our.Umbraco.Forms.uCaptcha</PackageId>
         <Title>UmbracoForms.uCaptcha</Title>

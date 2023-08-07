@@ -59,12 +59,12 @@ jobs:
     - name: Build uCaptcha
       run: dotnet pack ./src/Our.Umbraco.Forms.uCaptcha.csproj --no-restore -c ${{env.CONFIG}} --output ${{env.OUT_FOLDER}} /p:version=${{steps.gitversion.outputs.fullSemVer}}
       
-    # - name: Push to UmbHost GitHub Nuget Repo
-    #   if: ${{ github.event_name != 'pull_request' }}
-    #   run: | 
-    #     dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg --skip-duplicate --source https://nuget.pkg.github.com/umbhost/index.json --api-key ${{ github.token }}
+    - name: Push to UmbHost GitHub Nuget Repo
+      if: ${{ github.event_name != 'pull_request' }}
+      run: | 
+        dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg --skip-duplicate --source https://nuget.pkg.github.com/umbhost/index.json --api-key ${{ github.token }}
 
-    # - name: Push to UmbHost Nuget Repo
-    #   if: ${{ github.event_name != 'pull_request' }}
-    #   run: | 
-    #     dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+    - name: Push to UmbHost Nuget Repo
+      if: ${{ github.event_name != 'pull_request' }}
+      run: | 
+        dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}

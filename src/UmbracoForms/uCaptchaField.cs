@@ -81,6 +81,7 @@ public sealed class uCaptchaField : FieldType
         if (isTurnstile)
         {
             javascriptFiles.Add(uCaptchaConsts.Turnstile.JsResource);
+            javascriptFiles.Add($"~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Assets/{uCaptchaConsts.Turnstile.LocalJsResource}");
         }
         else
         {

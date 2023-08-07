@@ -77,4 +77,4 @@ jobs:
         prerelease: true
         title: ${{steps.gitversion.outputs.fullSemVer}}
         files: |
-          Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg
+          ./build.out/Our.Umbraco.Forms.uCaptcha.${{steps.gitversion.outputs.fullSemVer}}.nupkg

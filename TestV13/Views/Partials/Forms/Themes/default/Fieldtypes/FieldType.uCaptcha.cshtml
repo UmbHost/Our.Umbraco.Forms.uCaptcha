@@ -1,0 +1,57 @@
+﻿@using Microsoft.Extensions.Options
+@using Our.Umbraco.Forms.uCaptcha.Configuration
+@using Our.Umbraco.Forms.uCaptcha.Enums
+@model Umbraco.Forms.Web.Models.FieldViewModel
+@inject IOptions<uCaptchaSettings> _config;
+@{
+    var providerClass = string.Empty;
+    if (_config.Value.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+    {
+        providerClass = "h-captcha";
+    }
+    else if (_config.Value.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+    {
+        providerClass = "g-recaptcha";
+    }
+    else if (_config.Value.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
+    {
+        providerClass = "g-recaptcha";
+    }
+    var theme = "light";
+    var (_, t) = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "Theme");
+    if (t != "")
+    {
+        theme = t;
+    }
+    var size = "normal";
+    var (_, s) = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "Size");
+    if (s != "")
+    {
+        size = s;
+    }
+
+    var reCaptchaBadgePosition = string.Empty;
+    var reCaptchaBadgeSetting = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "reCaptchaBadgePosition");
+    if (_config.Value.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase))
+    {
+        if (reCaptchaBadgeSetting.Value != "")
+        {
+            reCaptchaBadgePosition = reCaptchaBadgeSetting.Value;
+        }
+        else
+        {
+            reCaptchaBadgePosition = "bottomright";
+        }
+
+    }
+
+    if (!string.IsNullOrEmpty(_config.Value.SiteKey))
+    {
+        <div id="uCaptcha" class="@providerClass" data-sitekey="@_config.Value.SiteKey" data-theme="@theme" data-size="@size" data-badge="@reCaptchaBadgePosition" data-callback="onSubmit"></div>
+        <input type="hidden" name="@Model.Name" value="false" class="u-captcha-bool"/>
+    }
+    else
+    {
+        <p class="error">ERROR: hCaptcha is missing the Site Key - Please update the appsettings.json</p>
+    }
+}

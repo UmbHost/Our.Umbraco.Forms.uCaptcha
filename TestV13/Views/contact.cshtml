@@ -19,7 +19,7 @@
                 <h2>@Model.ContactFormHeader</h2>
                 @Model.ContactIntro
                 @{
-                   await Html.RenderPartialAsync("Partials/ContactForm", new ContactFormViewModel());
+                    @await Umbraco.RenderMacroAsync("renderUmbracoForm", new { FormGuid = Model.Value("form"), ExcludeScripts = "1" })
                 }
             </div>
 

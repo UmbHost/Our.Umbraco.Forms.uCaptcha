@@ -1,5 +1,8 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @using Umbraco.Extensions
+@using Umbraco.Forms.Web.Extensions
+@using Smidge.TagHelpers
+@using Umbraco.Forms.Web
 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
@@ -80,7 +83,15 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>	
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
     <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
-
+    <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
+    @if (TempData["UmbracoForms"] != null)
+    {
+        @Html.RenderUmbracoFormDependencies(Url)
+        foreach (var form in TempData.Get<List<Guid>>("UmbracoForms"))
+        {
+            @await Component.InvokeAsync("RenderFormScripts", new {formId = form})
+        }
+    }
 </body>
 
 </html>

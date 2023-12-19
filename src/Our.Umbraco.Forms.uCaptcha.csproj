@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ContentTargetFolders>.</ContentTargetFolders>
+        <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+	    <StaticWebAssetBasePath>App_Plugins</StaticWebAssetBasePath>
 	    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
         <Product>UmbracoForms.uCaptcha</Product>
         <PackageId>Our.Umbraco.Forms.uCaptcha</PackageId>
@@ -50,16 +50,6 @@
             <Pack>True</Pack>
             <PackagePath>buildTransitive</PackagePath>
         </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.hcaptcha.js" />
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.invisible.hcaptcha.js" />
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.invisible.recaptcha.js" />
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.invisible.turnstile.js" />
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.recaptcha.js" />
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Assets\umbracoforms.turnstile.js" />
-      <None Remove="App_Plugins\Our.Umbraco.Forms.uCaptcha\Backoffice\Common\FieldTypes\ucaptchafield.html" />
     </ItemGroup>
 
     <ItemGroup>

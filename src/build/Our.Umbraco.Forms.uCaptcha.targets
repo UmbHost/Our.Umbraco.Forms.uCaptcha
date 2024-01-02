@@ -1,20 +1,13 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
     <PropertyGroup>
-        <UmbracoFormsuCaptchaContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\Our.Umbraco.Forms.uCaptcha\**\*.*</UmbracoFormsuCaptchaContentFilesPath>
 	    <UmbracoFormsuCaptchaRazorFilesPath>$(MSBuildThisFileDirectory)..\Views\Partials\Forms\Themes\default\Fieldtypes\**\*.*</UmbracoFormsuCaptchaRazorFilesPath>
     </PropertyGroup>
 
     <Target Name="CopyUmbracoFormsuCaptchaAssets" BeforeTargets="Build">
         <ItemGroup>
-            <UmbracoFormsuCaptchaContentFiles Include="$(UmbracoFormsuCaptchaContentFilesPath)" />
             <UmbracoFormsuCaptchaRazorFiles Include="$(UmbracoFormsuCaptchaRazorFilesPath)" />
         </ItemGroup>
-        <Message Text="Copying Our.Umbraco.Forms.uCaptcha files: $(UmbracoFormsuCaptchaContentFilesPath) - #@(UmbracoFormsuCaptchaContentFiles->Count()) files"  Importance="high" />
-        <Copy
-            SourceFiles="@(UmbracoFormsuCaptchaContentFiles)"
-            DestinationFiles="@(UmbracoFormsuCaptchaContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Our.Umbraco.Forms.uCaptcha\%(RecursiveDir)%(Filename)%(Extension)')"
-            SkipUnchangedFiles="true" />
         <Message Text="Copying Our.Umbraco.Forms.uCaptcha Razor files: $(UmbracoFormsuCaptchaRazorFilesPath) - #@(UmbracoFormsuCaptchaRazorFiles->Count()) files"  Importance="high" />
         <Copy
 	        SourceFiles="@(UmbracoFormsuCaptchaRazorFiles)"
@@ -22,13 +15,4 @@
 	        SkipUnchangedFiles="true"	/>
 
     </Target>
-
-    <Target Name="ClearUmbracoFormsuCaptchaAssets" BeforeTargets="Clean">
-        <ItemGroup>
-            <UmbracoFormsuCaptchaDir Include="$(MSBuildProjectDirectory)\App_Plugins\Our.Umbraco.Forms.uCaptcha\" />
-        </ItemGroup>
-        <Message Text="Clear old UmbracoForms.uCaptcha data"  Importance="high" />
-        <RemoveDir Directories="@(UmbracoFormsuCaptchaDir)"  />
-    </Target>
-
 </Project>

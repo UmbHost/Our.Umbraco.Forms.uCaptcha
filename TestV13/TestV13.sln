@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestV13", "TestV13.csproj", "{12015073-326F-48A6-B902-3BB622B324A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Our.Umbraco.Forms.uCaptcha", "..\src\Our.Umbraco.Forms.uCaptcha.csproj", "{3A5ECB47-14E8-4EE3-80A5-80C296F3A328}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12015073-326F-48A6-B902-3BB622B324A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12015073-326F-48A6-B902-3BB622B324A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12015073-326F-48A6-B902-3BB622B324A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12015073-326F-48A6-B902-3BB622B324A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5ECB47-14E8-4EE3-80A5-80C296F3A328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5ECB47-14E8-4EE3-80A5-80C296F3A328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5ECB47-14E8-4EE3-80A5-80C296F3A328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5ECB47-14E8-4EE3-80A5-80C296F3A328}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EE5F353-FB58-4C96-8EDB-21834997A558}
+	EndGlobalSection
+EndGlobal

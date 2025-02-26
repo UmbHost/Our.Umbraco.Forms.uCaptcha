@@ -75,7 +75,7 @@ Alternatively you can load the packages script dependencies using the method bel
 ```
 
 If you are using the default theme you will need to create a custom theme using the zip found in the documentation here:
-https://docs.umbraco.com/v/10.x-lts/umbraco-forms/developer/themes
+https://docs.umbraco.com/umbraco-forms/developer/themes
 
 You can change the default theme used by Umbraco in your appsettings.json file
 ```
@@ -86,7 +86,7 @@ You can change the default theme used by Umbraco in your appsettings.json file
 }
 ```
 Reference:
-https://docs.umbraco.com/v/10.x-lts/umbraco-forms/developer/configuration
+https://docs.umbraco.com/umbraco-forms/developer/configuration
 
 ### Turnstile configuration
 

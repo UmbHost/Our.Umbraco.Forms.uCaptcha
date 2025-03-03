@@ -15,7 +15,7 @@
     }
     else if (_config.Value.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase))
     {
-        providerClass = "g-recaptcha";
+        providerClass = "cf-turnstile";
     }
     var theme = "light";
     var (_, t) = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "Theme");
@@ -52,6 +52,6 @@
     }
     else
     {
-        <p class="error">ERROR: hCaptcha is missing the Site Key - Please update the appsettings.json</p>
+        <p class="error">ERROR: uCaptcha is missing the Site Key - Please update the appsettings.json</p>
     }
 }

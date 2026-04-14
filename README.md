@@ -1,5 +1,7 @@
 # Our.Umbraco.Forms.uCaptcha
 
+## THIS REPOSITORY IS FOR UMBRACO V13, FOR UMBRACO V17+ PLEASE GO HERE ---> https://github.com/UmbHost/Umbraco.Community.Forms.uCaptcha <---
+
 A simple to use and integrate captcha plugin for Umbraco Forms which supports [hCaptcha](https://www.hcaptcha.com/), [reCaptcha](https://developers.google.com/recaptcha/) and [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/).
 
 ## Getting started

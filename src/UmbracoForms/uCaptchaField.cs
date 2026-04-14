@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using Our.Umbraco.Forms.uCaptcha.Configuration;
 using Our.Umbraco.Forms.uCaptcha.Enums;
 using Our.Umbraco.Forms.uCaptcha.Helpers;
@@ -25,14 +25,16 @@ public sealed class uCaptchaField : FieldType
 {
     private readonly uCaptchaSettings _config;
     private readonly ILogger<uCaptchaField> _logger;
+    private readonly IHttpClientFactory _httpClientFactory;
     private bool ishCaptcha;
     private bool isreCaptcha;
     private bool isTurnstile;
 
-    public uCaptchaField(IOptionsMonitor<uCaptchaSettings> config, ILogger<uCaptchaField> logger)
+    public uCaptchaField(IOptionsMonitor<uCaptchaSettings> config, ILogger<uCaptchaField> logger, IHttpClientFactory httpClientFactory)
     {
         _config = config.CurrentValue;
         _logger = logger;
+        _httpClientFactory = httpClientFactory;
         Id = new Guid("76fc6a38-4517-4fea-b928-9ff20c626adb");
         Name = "uCaptcha";
         Description = "hCaptcha or Google reCaptcha bot protection";
@@ -40,37 +42,33 @@ public sealed class uCaptchaField : FieldType
         DataType = FieldDataType.Bit;
         SortOrder = 10;
         SupportsRegex = false;
-        ishCaptcha = _config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase); 
+        PreviewView = "uCaptcha.FieldPreview.uCaptcha";
+        ishCaptcha = _config.Provider.Equals(Provider.Name.hCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase);
         isreCaptcha = _config.Provider.Equals(Provider.Name.reCaptcha.ToString(), StringComparison.InvariantCultureIgnoreCase);
         isTurnstile = _config.Provider.Equals(Provider.Name.Turnstile.ToString(), StringComparison.InvariantCultureIgnoreCase);
     }
 
-    public override string GetDesignView()
-    {
-        return "~/App_Plugins/Our.Umbraco.Forms.uCaptcha/Backoffice/Common/FieldTypes/ucaptchafield.html";
-    }
-
     [Setting("Show Label", Description = "Show the property label",
-        View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/checkbox.html")]
+        View = "Umb.PropertyEditorUi.Toggle")]
     public string ShowLabel { get; set; }
 
     [Setting("Theme", Description = "uCaptcha theme", PreValues = "dark,light",
-        View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
+        View = "Umb.PropertyEditorUi.Dropdown")]
     public string Theme { get; set; }
 
     [Setting("Size", Description = "uCaptcha size", PreValues = "normal,compact,invisible",
-        View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
+        View = "Umb.PropertyEditorUi.Dropdown")]
     public string Size { get; set; }
 
     [Setting("reCaptcha Badge Position", Description = "Reposition the reCAPTCHA badge",
         PreValues = "bottomright,bottomleft,inline",
-        View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/dropdownlist.html")]
+        View = "Umb.PropertyEditorUi.Dropdown")]
     public string reCaptchaBadgePosition { get; set; }
 
     [Setting("Error Message",
         Description =
             "The error message to display when the user does not pass the uCaptcha check, the default message is: \"You must check the \"I am human\" checkbox to continue\"",
-        View = "~/App_Plugins/UmbracoForms/backoffice/Common/SettingTypes/textfield.html")]
+        View = "Umb.PropertyEditorUi.TextBox")]
     public string ErrorMessage { get; set; }
 
     public override bool HideLabel => !Parse.Bool(ShowLabel);
@@ -194,7 +192,7 @@ public sealed class uCaptchaField : FieldType
 
             var secretKey = _config.SecretKey;
 
-            using var client = new HttpClient();
+            using var client = _httpClientFactory.CreateClient("uCaptcha");
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
             client.DefaultRequestHeaders.Add("Accept", "*/*");
@@ -219,7 +217,7 @@ public sealed class uCaptchaField : FieldType
                 var jsonString = response.Content.ReadAsStringAsync();
                 jsonString.Wait();
 
-                var result = JsonConvert.DeserializeObject<uCaptchaVerifyResponse>(jsonString.Result);
+                var result = JsonSerializer.Deserialize<uCaptchaVerifyResponse>(jsonString.Result);
                 if (result is { Success: false })
                 {
                     errors.Add(errorMessage);

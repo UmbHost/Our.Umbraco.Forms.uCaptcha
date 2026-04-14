@@ -1,0 +1,13 @@
+{
+  "id": "Our.Umbraco.Forms.uCaptcha",
+  "name": "uCaptcha",
+  "version": "6.0.0",
+  "extensions": [
+    {
+      "type": "entryPoint",
+      "alias": "uCaptcha.EntryPoint",
+      "name": "uCaptcha Entry Point",
+      "js": "/App_Plugins/Our.Umbraco.Forms.uCaptcha/ucaptcha.entry.js"
+    }
+  ]
+}

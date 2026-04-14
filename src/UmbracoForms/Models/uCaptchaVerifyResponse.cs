@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms.Models
 {
@@ -13,35 +13,35 @@ namespace Our.Umbraco.Forms.uCaptcha.UmbracoForms.Models
         /// indicates if verify was successfully or not
         /// </summary>
         /// <remarks>https://docs.hcaptcha.com/#server</remarks>
-        [JsonProperty("success")]
+        [JsonPropertyName("success")]
         public bool Success { get; set; }
 
         /// <summary>
         /// timestamp of the captcha (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
         /// </summary>
         /// <remarks>https://docs.hcaptcha.com/#server</remarks>
-        [JsonProperty("challenge_ts")]
+        [JsonPropertyName("challenge_ts")]
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>
         /// the hostname of the site where the captcha was solved
         /// </summary>
         /// <remarks>https://docs.hcaptcha.com/#server</remarks>
-        [JsonProperty("hostname")]
+        [JsonPropertyName("hostname")]
         public string Hostname { get; set; }
 
         /// <summary>
         /// optional: whether the response will be credited
         /// </summary>
         /// <remarks>https://docs.hcaptcha.com/#server</remarks>
-        [JsonProperty("credit")]
+        [JsonPropertyName("credit")]
         public bool Credit { get; set; }
 
         /// <summary>
         /// string based error code array
         /// </summary>
         /// <remarks>https://docs.hcaptcha.com/#server</remarks>
-        [JsonProperty("error-codes")]
+        [JsonPropertyName("error-codes")]
         public string[] ErrorCodes { get; set; }
     }
 }

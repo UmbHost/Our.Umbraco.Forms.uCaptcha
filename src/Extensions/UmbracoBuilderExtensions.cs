@@ -13,6 +13,7 @@ namespace Our.Umbraco.Forms.uCaptcha.Extensions
         {
             builder.WithCollectionBuilder<FieldCollectionBuilder>().Add<uCaptchaField>();
             builder.Services.Configure<uCaptchaSettings>((IConfiguration)builder.Config.GetSection(uCaptchaConsts.uCaptcha));
+            builder.Services.AddHttpClient("uCaptcha");
             return builder;
         }
     }

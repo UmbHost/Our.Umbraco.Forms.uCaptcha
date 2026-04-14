@@ -4,15 +4,22 @@ A simple to use and integrate captcha plugin for Umbraco Forms which supports [h
 
 ## Getting started
 
-This package is supported on Umbraco 10+ and Umbraco Forms 10+.
+This package supports Umbraco 17+ and Umbraco Forms 17+ (.NET 10).
 
-This package has been tested on Umbraco 11 and Umbraco Forms 11, however only LTS versions of Umbraco and Umbraco Forms are officially supported.
+For Umbraco 10-13, use [v5.x](https://www.nuget.org/packages/Our.Umbraco.Forms.uCaptcha/5.0.0) of this package.
 
 ## Breaking Changes:
 
+### V6.0.0:
+
+Upgraded to Umbraco 17 (Bellissima backoffice) and .NET 10.
+Dropped support for Umbraco 10, 11, and 13 (use v5.x for those versions).
+Replaced Newtonsoft.Json with System.Text.Json.
+Backoffice field preview migrated from AngularJS HTML to Lit web component.
+
 ### V4.0.0 15 February 2023:
 
-Cloudflare Turnstile has been reworked to use a signle javascript file removing `umbracoforms.invisible.turnstile.js`
+Cloudflare Turnstile has been reworked to use a single javascript file removing `umbracoforms.invisible.turnstile.js`
 Cloudflare Turnstile has been reworked to use the `cf-` prefix instead of `g-`
 All javascript has been rewritten to remove jQuery dependency
 
@@ -76,11 +83,8 @@ Alternatively you can load the packages script dependencies using the method bel
 
 If you are using the default theme you will need to create a custom theme using the zip found in the documentation here:
 
-### Umbraco 13
-https://docs.umbraco.com/umbraco-forms/13.latest/developer/themes
-
-### Umbraco 10
-https://docs.umbraco.com/umbraco-forms/10.latest/developer/themes
+### Umbraco 17
+https://docs.umbraco.com/umbraco-forms/developer/themes
 
 You can change the default theme used by Umbraco in your appsettings.json file
 ```
@@ -92,11 +96,8 @@ You can change the default theme used by Umbraco in your appsettings.json file
 ```
 Reference:
 
-### Umbraco 13
-https://docs.umbraco.com/umbraco-forms/13.latest/developer/configuration
-
-### Umbraco 10
-https://docs.umbraco.com/umbraco-forms/10.latest/developer/configuration
+### Umbraco 17
+https://docs.umbraco.com/umbraco-forms/developer/configuration
 
 ### Turnstile configuration
 
@@ -108,6 +109,6 @@ To raise a new bug, create an issue on the GitHub repository. To fix a bug or ad
 
 ## License
 
-Copyright &copy; 2023 [UmbHost Limited](https://umbhost.net/).
+Copyright &copy; 2026 [UmbHost Limited](https://umbhost.net/).
 
 Licensed under the MIT License.

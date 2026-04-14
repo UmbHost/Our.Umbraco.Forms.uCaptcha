@@ -2,11 +2,11 @@ name: Package up.
 
 on:
   workflow_dispatch:
-    
+
 jobs:
 
   build:
-    runs-on: windows-latest 
+    runs-on: windows-latest
 
     env:
       CONFIG: 'Release'
@@ -16,22 +16,22 @@ jobs:
     steps:
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.x
-    
+        dotnet-version: 10.x
+
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.7
       with:
-        versionSpec: '5.x'    
-    
+        versionSpec: '5.x'
+
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    
+
     - name: Retrieve cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ~/.nuget/packages
@@ -49,24 +49,24 @@ jobs:
     - name: Display GitVersion SemVer
       run: |
        echo "FullSemVer: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
-              
+
 # ------------------------
-# actual builds / packages 
+# actual builds / packages
 # ------------------------
     - name: Restore uCaptcha
       run: dotnet restore ./src/Our.Umbraco.Forms.uCaptcha.csproj
 
     - name: Build uCaptcha
       run: dotnet pack ./src/Our.Umbraco.Forms.uCaptcha.csproj --no-restore -c ${{env.CONFIG}} --output ${{env.OUT_FOLDER}} /p:version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
-      
+
     - name: Push to UmbHost GitHub Nuget Repo
       if: ${{ github.event_name != 'pull_request' }}
-      run: | 
+      run: |
         dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --skip-duplicate --source https://nuget.pkg.github.com/umbhost/index.json --api-key ${{ github.token }}
 
     - name: Push to UmbHost Nuget Repo
       if: ${{ github.event_name != 'pull_request' }}
-      run: | 
+      run: |
         dotnet nuget push ./build.out/Our.Umbraco.Forms.uCaptcha.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
 
     - name: Create Release
